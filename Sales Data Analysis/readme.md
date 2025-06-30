@@ -88,6 +88,7 @@ The dashboard includes the following key insights:
 - Configured **Edit Interactions** so each set responds to its respective slicer
 - Avoided extra date tables for better performance
 
+[Two different date filters for comparing two different periods](./Two%20periods%20compared.png)
 ---
 
 ## 📋 Order-Level Detail (Requirement 7)
