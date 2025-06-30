@@ -2,7 +2,7 @@
 
 This Power BI dashboard presents an end-to-end analysis of Blinkit's sales performance, outlet operations, and product dynamics. It leverages KPIs and visual insights to uncover patterns in customer behavior, outlet type performance, fat content impact, and more.
 
-![Dashboard Preview](./screenshots/blinkit_dashboard.png) <!-- Make sure to store the image in a 'screenshots' folder -->
+![Dashboard Preview](./Blinkit_Data_Analysis_Overview.png) 
 
 ---
 
