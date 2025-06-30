@@ -67,10 +67,3 @@ To conduct a comprehensive analysis of Blinkit’s operations by examining key b
 - **Multi-chart Visual Design**
 
 ---
-
-## 📝 Notes
-
-- This project uses anonymized/mock data for educational and demonstration purposes.
-- No real or proprietary Blinkit data has been used.
-
----
