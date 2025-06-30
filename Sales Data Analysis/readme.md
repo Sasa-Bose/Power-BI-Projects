@@ -1,107 +1,137 @@
 # 📊 Power BI Project: Sales Data Analysis
 
-This Power BI project presents a comprehensive analysis of sales data using interactive dashboards and advanced data modeling. The objective is to uncover actionable insights such as top-performing products, sales trends, and performance comparisons between different time periods.
+This Power BI project provides a comprehensive sales data analysis dashboard built in Power BI. The dashboard includes detailed insights into product performance, sales trends, discounts, and regional analysis. Interactive filters and dynamic visuals allow users to explore data efficiently and compare performance across time periods.
 
 ---
 
 ## 📁 Project Overview
 
-This report includes the following insights and interactive visualizations:
+The dashboard includes the following key insights:
 
 1. **Top/Bottom 5 Products** by:
    - Sales
    - Profit
    - Quantity Sold
 
-2. **Sales Trends** over time:
+2. **Sales Trends** across:
    - Daily
    - Monthly
    - Quarterly
-   - Yearly
+   - Yearly periods
 
-3. **Relationship Analysis** between:
-   - Sales and Profit
+3. **Sales vs. Profit Relationship**
 
-4. **Comparative Analysis**:
-   - Compare Sales, Profit, and Quantity Sold between any two user-selected periods
+4. **Compare Metrics** (Sales, Profit, Quantity Sold) between any two user-defined time periods
 
-5. **Average Discount** offered in each discount category
+5. **Average Discount** by Discount Category
 
 6. **Total Number of Orders**
 
-7. **Order-Level Report**:
-   - View Sales, Profit, Discount, Net Sales, and more
-   - Filterable by Product, Date, Customer ID, and Promotion Category
+7. **Order-Level Table View**:
+   - Fields: Sales, Profit, Discount, Net Sales, etc.
+   - Filterable using Product, Date, Customer ID, Promotion Category
 
-8. **City-wise Sales Breakdown**
-
----
-
-## 🛠️ Data Preparation & Modeling Steps
-
-The following steps were performed in Power BI to clean and model the data effectively:
-
-### 🔍 Data Cleaning & Profiling
-
-- Reviewed column data types and profiles in **Power Query Editor**
-- Renamed columns to meaningful, consistent names
-- Ensured primary keys like `Customer ID` were set to `Text` type
-- Cleaned and standardized categorical values (e.g., gender: `M`, `Male`, `1` ➝ `Male`)
-- Removed duplicates, handled nulls, and created conditional columns as needed
-
-### 🔗 Data Modeling
-
-- Merged relevant tables
-- Added calculated columns (e.g., Profit = 10% of Net Sales)
-- Created an **Index column** renamed to `Order ID` for tracking orders
+8. **Sales by City**
 
 ---
 
-## 📊 Key Visualizations
+## 🛠️ Data Preparation and Modeling Steps
+
+### 🔹 Data Cleaning
+
+- Checked column data types and profiles in Power Query Editor
+- Standardized column names and values (e.g. gender formats, binary labels)
+- Removed duplicates, nulls, and invalid entries
+- Converted identifiers like `Customer ID` and `Order ID` to text
+- Created conditional columns where needed
+
+### 🔹 Data Modeling
+
+- Merged tables where appropriate
+- Created calculated columns (e.g. Profit = 10% of Net Sales)
+- Added Index column renamed to `Order ID`
+- Applied single-directional relationships between dimension and fact tables
+- Ensured related columns are of the same data type
+- Used “Assume Referential Integrity” where possible
+
+---
+
+## 📊 Key Visuals and Techniques
 
 ### ✅ Top/Bottom 5 Products
 
-- Bar charts to display Top/Bottom 5 by **Sales**, **Profit**, and **Quantity Sold**
-- Created a new `Profit` column in the Fact Table using: Profit = 0.1 * [Net Sales]
-  
+- Used **Stacked Bar Charts**
+- Applied **Visual-Level Filters** to show Top/Bottom 5 for Sales, Profit, and Quantity Sold
+- Used a **calculated column** to estimate Profit as 10% of Net Sales (based on business rule)
+
 ### 📈 Sales Trend Over Time
 
-- Line chart with drill-through enabled to analyze performance over:
-- Daily
-- Monthly
-- Quarterly
-- Yearly timeframes
+- Used **Line Charts**
+- Enabled **Drill-through** to analyze data by day, month, quarter, and year
 
-### 🔄 Comparative Analysis Between Periods
+### 🔄 Period-to-Period Comparison
 
-#### Approach 1: Dual Date Tables + DAX
+#### Method 1: Using Dual Date Tables and DAX Measures
 
-- Created two `Date Tables`: `DateTable1` and `DateTable2` using:
-```DAX
-DateTable = CALENDARAUTO()
-Connected: DateTable1 to Fact Table with Active Relationship
-DateTable2 with Inactive Relationship
+- Created two **Date Tables**
+- Defined one **active** and one **inactive** relationship
+- Created custom measures using DAX functions such as:
+  - `CALCULATE`
+  - `USERELATIONSHIP`
+  - `ALL`
+- Used **Bar Charts** to visualize metric comparisons between selected periods
 
-Created a measure using USERELATIONSHIP:
-Sum of Net Sales = CALCULATE(
-  SUM('FactTable'[Net Sales]),
-  ALL('DateTable1'),
-  USERELATIONSHIP('DateTable2'[Date], 'FactTable'[Date])
-)
-#### Approach 2(Recommended): Visual Interaction Editing
-Created two slicers and two sets of charts (Sales, Profit, Quantity)
-Used "Edit Interactions" to isolate interactions for each slicer
-Reduces model size and improves performance
+#### Method 2 (Recommended): Using Interaction Settings
 
-####📋 Order Table Report with Filters
-Table visual displays complete order-level data
-Added slicers for: Product, Customer, Date, Promotion
-Implemented cross-filtering using this measure: SUM DIM_Filter = SUM('FactTable'[Net Sales])
-Applied visual-level filters: Show items where measure is not blank (for dynamic slicer filtering)
+- Added **two date slicers**
+- Created **two sets of visuals** (Sales, Profit, Quantity)
+- Configured **Edit Interactions** so each set responds to its respective slicer
+- Avoided extra date tables for better performance
 
-###📍 Additional Notes
-All custom measures are stored in a separate Measure Table for clarity
+---
 
-###📌 Conclusion
-This Power BI project showcases how businesses can use data-driven dashboards to explore sales trends, identify high-performing products, and make informed decisions. The use of calculated measures, dual date tables, and interaction-based filtering demonstrates strong capabilities in handling complex BI requirements.
+## 📋 Order-Level Detail (Requirement 7)
 
+- Used **Table Visual**
+- Added slicers for:
+  - Product Name
+  - Customer Name
+  - Promotion Name
+  - Date
+- Enabled **cross-filtering between slicers** using DAX measures and **Visual-Level Filters**
+- Used DAX function:
+  - `SUM`
+
+---
+
+## 🔢 KPI & Summary Metrics
+
+- Used **Card Visuals** for KPIs:
+  - Total Orders (using `DISTINCTCOUNT`)
+  - Total Sales, Profit, and Quantity Sold
+
+- Calculated **Average Discount by Category** using bar chart and the `AVERAGE` function
+
+- All measures organized into a dedicated **Measure Table**
+
+---
+
+## 🌍 City-Wise Sales Breakdown
+
+- Used **Bar/Map Visuals** to display sales performance by city
+- Enabled filtering and sorting by performance metrics
+
+---
+
+## 📌 Conclusion
+
+This project demonstrates a full-cycle business intelligence solution, showcasing:
+
+- Data cleaning and modeling best practices
+- Effective use of DAX for calculated metrics and dynamic filtering
+- Advanced filtering techniques using dual slicers and interaction settings
+- Interactive and user-friendly dashboards for data exploration
+
+The report enables businesses to identify top-performing products, understand sales patterns, compare across periods, and make informed decisions.
+
+---
