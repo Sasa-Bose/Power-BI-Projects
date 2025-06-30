@@ -92,32 +92,10 @@ To design an end-to-end sales analysis tool for a car dealership network, with a
 
 ---
 
-## 📁 Repository Contents
-
-- `Car_Sales_Dashboard.pbix` – Full Power BI report  
-- `/screenshots/car_sales_dashboard_overview.png` – Overview Dashboard  
-- `/screenshots/car_sales_dashboard_details.png` – Details Table View  
-- `README.md` – This documentation  
-
----
-
 ## 📝 Notes
 
 - Ensured all sales records had valid dates and prices (no nulls).
 - Optimized for both **executive overview** and **analyst-level drill-down**.
 - Grid table can be exported directly by users after applying filters.
-
----
-
-## ⚠️ Disclaimer
-
-This dashboard uses mock/sample data for demo and educational purposes. It is not affiliated with any real dealerships or automotive companies.
-
----
-
-## 🔗 Author
-
-**Your Name**  
-[LinkedIn](https://www.linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername)
 
 ---
