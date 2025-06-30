@@ -84,9 +84,6 @@ A dynamic chart-switching system using bookmarks and buttons:
   - Balance Inquiries
   - Remaining Balance
   - Average Value per Transaction
-
----
-
 ---
 
 ## ✅ User Experience Enhancements
